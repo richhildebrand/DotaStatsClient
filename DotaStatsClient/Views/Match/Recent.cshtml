@@ -29,13 +29,13 @@
                 <td>
                     @foreach (var player in affliationGetter.GetRadiantPlayers(match.players))
                     {
-                        <img src="@imageUrlGenerator.GetHeroImageUrl(player.hero_name)" />
+                        <img src="@player.hero.image_url" />
                     }
                 </td>
                 <td>
                     @foreach (var player in affliationGetter.GetDirePlayers(match.players))
                     {
-                        <img src="@imageUrlGenerator.GetHeroImageUrl(player.hero_name)" />
+                        <img src="@player.hero.image_url" />
                     }
                 </td>
             </tr>

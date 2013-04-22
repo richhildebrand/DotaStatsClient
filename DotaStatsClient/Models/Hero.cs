@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace DotaSite.Models
 {
@@ -10,5 +8,6 @@ namespace DotaSite.Models
 		public int id { get; set; }
 		public string name { get; set; }
 		public string localized_name { get; set; }
+        public string image_url { get; set; }
 	}
 }
