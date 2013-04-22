@@ -1,0 +1,43 @@
+﻿@using DotaSite.Helpers;
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/custom")
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-right">
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.TopNavLink("Heroes", "WinRate", "Hero")</li>
+                            <li>@Html.TopNavLink("Matches", "Recent", "Match")</li>
+                            <li>@Html.TopNavLink("Players", "Overview", "Player")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="Main">
+            <section class="content-wrapper">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - Dota 2 is a registered trademark of Valve Corporation</p>
+                </div>
+            </div>
+        </footer>
+
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

@@ -1,0 +1,49 @@
+﻿@using DotaSite.Helpers;
+@using DotaSite.Models;
+@model List<MatchDetail>
+
+@{
+    ViewBag.Title = "Player Matches";
+    var imageUrlGenerator = new ImageUrlGenerator();
+    var affiliationHelper = new AffiliationHelper();
+    var cssClassHelper = new CssClassHelper();
+}
+
+<section class="featured center main-content">
+    @Html.Partial("PlayerNavigation", Model)
+    
+    <h2>Recent Matches</h2>      
+    <table>
+        <thead>
+            <th class="empty-cell">Hero</th>
+            <th></th>
+            <th>Result</th>
+            <th>Match ID</th>  
+            <th>Duration</th>  
+            <th>KDA</th>
+            <th>Items</th>
+        </thead>
+        @{
+            var matchCount = 0;    
+        
+            foreach (var match in Model)
+            {
+                matchCount +=1;
+                var player = match.players.FirstOrDefault();
+                var victoryOrDefeat = affiliationHelper.PlayerWins(player, match.radiant_win) ? "Won Match" : "Lost Match";
+            
+                <tr class="@cssClassHelper.GetEvenRowClass(matchCount)">
+                    <td>
+                        <img src="@imageUrlGenerator.GetHeroImageUrl(player.hero_name)" />
+                    </td>
+                    <td>@player.hero_name</td>
+                    <td>@victoryOrDefeat</td>
+                    <td><a class="detail-link" href="/Match/Details/@match.match_id">@match.match_id</a></td>
+                    <td>@match.duration</td>
+                    <td>@player.kills / @player.deaths / @player.assists</td>
+                    <td>@player.item_0 @player.item_1 @player.item_2 @player.item_3 @player.item_4  @player.item_5</td>
+                </tr>
+            }
+        }
+    </table> 
+</section>

@@ -1,0 +1,56 @@
+﻿@using DotaSite.ViewModels;
+@using DotaSite.Models;
+@using DotaSite.Helpers;
+@model List<MatchDetail>
+
+@{
+    ViewBag.Title = "Win Rate";
+	var imageUrlGenerator = new ImageUrlGenerator();
+	var cssClassHelper = new CssClassHelper();
+    var heroHelper = new HeroHelper();
+
+    var allMatches = Model;
+    var heroes = heroHelper.GetHeroListForOnePlayer(allMatches, new List<PlayerHeroViewModel>());
+    heroes = heroHelper.GetHeroListForPlayerN(allMatches, heroes, 1);    
+    heroes = heroHelper.GetHeroListForPlayerN(allMatches, heroes, 2);    
+    heroes = heroHelper.GetHeroListForPlayerN(allMatches, heroes, 3);    
+    heroes = heroHelper.GetHeroListForPlayerN(allMatches, heroes, 4);    
+    heroes = heroHelper.GetHeroListForPlayerN(allMatches, heroes, 5);    
+    heroes = heroHelper.GetHeroListForPlayerN(allMatches, heroes, 6);    
+    heroes = heroHelper.GetHeroListForPlayerN(allMatches, heroes, 7);    
+    heroes = heroHelper.GetHeroListForPlayerN(allMatches, heroes, 8);    
+    heroes = heroHelper.GetHeroListForPlayerN(allMatches, heroes, 9);    
+}
+
+<section class="featured center main-content">
+    @Html.Partial("HeroNavigation", "HeroNavigation")
+
+ <h2>Win Rate</h2>     
+    <table>
+        <thead>
+            <th class="empty-cell">Hero</th>
+            <th></th>
+            <th>Matches Played</th>  
+            <th>Win Rate</th>  
+        </thead>
+
+		@{
+			int heroCount = 1;
+			
+			
+			foreach (var hero in heroes.OrderByDescending(h => h.GetWinPercent()))
+			{
+	  
+				heroCount += 1;
+				
+				<tr class="@cssClassHelper.GetEvenRowClass(heroCount + 1)">
+					<td><img src="@imageUrlGenerator.GetHeroImageUrl(hero.Name)" /></td>
+					<td>@hero.Name</td>
+					<td>@hero.GamesPlayed</td>
+					<td class="percent">@hero.GetWinPercent()</td>
+				</tr>
+			}
+		}
+
+    </table>
+</section>

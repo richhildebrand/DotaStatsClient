@@ -1,0 +1,80 @@
+﻿@using DotaSite.Helpers;
+@using DotaSite.Models;
+@model List<MatchDetail>
+
+@{
+    ViewBag.Title = "Player Overview";
+    var imageUrlGenerator = new ImageUrlGenerator();
+    var affiliationHelper = new AffiliationHelper();
+    var cssClassHelper = new CssClassHelper();
+    var heroHelper = new HeroHelper();
+
+    var heroes = heroHelper.GetHeroListForOnePlayer(Model, new List<PlayerHeroViewModel>());
+}
+
+<section class="featured center main-content">
+    @Html.Partial("PlayerNavigation", Model)
+    
+    <h2>Player Overview</h2>      
+    <table>
+        <thead>
+            <th class="empty-cell"></th>
+            <th>Hero</th>
+            <th>Matches Played</th>
+            <th>Win Rate</th>  
+            <th>KDA Ratio</th>  
+        </thead>
+        @{
+            int heroCount = 1;
+        
+            foreach (var hero in heroes.OrderByDescending(h => h.GamesPlayed))
+            {
+                heroCount += 1;
+                
+            
+              <tr class="@cssClassHelper.GetEvenRowClass(heroCount + 1)">
+                <td><img src="@imageUrlGenerator.GetHeroImageUrl(hero.Name)" /></td>
+                <td>@hero.Name</td>
+                <td>@hero.GamesPlayed</td>
+                <td class="percent">@hero.GetWinPercent()</td>
+                <td>@hero.GetKdaPercent()</td>
+              </tr>
+            }
+        }
+    </table> 
+    
+    <div class="spacer"></div>
+        
+    <h2>Latest Matches</h2>      
+    <table>
+        <thead>
+            <th class="empty-cell"></th>
+            <th>Hero</th>
+            <th>Result</th>
+            <th>Match ID</th>  
+            <th>Duration</th>  
+            <th>KDA</th>
+        </thead>
+        @{
+            var matchCount = 0;    
+        
+            foreach (var match in Model)
+            {
+                matchCount += 1;
+                var player = match.players.FirstOrDefault();
+                var victoryOrDefeat = affiliationHelper.PlayerWins(player, match.radiant_win) ? "Won Match" : "Lost Match";
+            
+                <tr class="@cssClassHelper.GetEvenRowClass(matchCount)">
+                    <td>
+                        <img src="@imageUrlGenerator.GetHeroImageUrl(player.hero_name)" />
+                    </td>
+                    <td>@player.hero_name</td>
+                    <td>@victoryOrDefeat</td>
+                    <td><a class="detail-link" href="/Match/Details/@match.match_id">@match.match_id</a></td>
+                    <td>@match.duration</td>
+                    <td>@player.kills / @player.deaths / @player.assists</td>
+                </tr>
+            }
+        }
+    </table> 
+</section>

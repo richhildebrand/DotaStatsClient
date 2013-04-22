@@ -1,0 +1,161 @@
+﻿@using DotaSite.Helpers;
+@using DotaSite.Models;
+@model MatchDetail
+
+@{
+    ViewBag.Title = "Match Details";
+    
+    var match = Model;
+    var imageUrlGenerator = new ImageUrlGenerator();
+    var affiliationGetter = new AffiliationHelper();
+    var cssClassHelper = new CssClassHelper();
+}
+<section id="MatchDetails" class="center main-content">
+    <h1>Match @match.match_id</h1>
+    @{
+        var victoryOrDefeat = match.radiant_win ? "victory" : "defeat";    
+        var victoryOrDefeatCaps = match.radiant_win ? "Victory" : "Defeat";    
+        <h2><span>The Radiant -</span><span class="@victoryOrDefeat"> @victoryOrDefeatCaps</span></h2>
+    }
+    <table>
+        <thead>
+            <th>Player</th>
+            <th class="empty-cell">Hero</th>
+            <th></th>
+            <th>Level</th>  
+            <th>K</th>  
+            <th>D</th>
+            <th>A</th>
+            <th>Gold</th>
+            <th>LH</th>
+            <th>DN</th>
+            <th>XPM</th>
+            <th>GPM</th>
+            <th>Items</th>
+        </thead>
+        @{    
+        int levelSum = 0, Ksum = 0, Dsum = 0, Asum = 0, GoldSum = 0, LHsum = 0, DnSum = 0, XPMsum = 0, GPMsum = 0;
+
+        foreach (var player in affiliationGetter.GetRadiantPlayers(Model.players))
+        {
+            levelSum += player.level;
+            Ksum += player.kills;
+            Dsum += player.deaths;
+            Asum += player.assists;
+            GoldSum += player.gold;
+            LHsum += player.last_hits;
+            DnSum += player.denies;
+            XPMsum += player.xp_per_min;
+            GPMsum += player.gold_per_min;
+            
+            <tr class="@cssClassHelper.GetEvenRowClass(player.player_slot + 1)">
+                <td><a class="detail-link" href="/Player/Overview/@player.account_id">@player.account_name</a></td>
+                <td><img src="@imageUrlGenerator.GetHeroImageUrl(player.hero_name)" /></td>
+                <td>@player.hero_name</td>
+                <td>@player.level</td>
+                <td>@player.kills</td>
+                <td>@player.deaths</td>
+                <td>@player.assists</td>
+                <td class="kunit">@player.gold</td>
+                <td>@player.last_hits</td>
+                <td>@player.denies</td>
+                <td>@player.xp_per_min</td>
+                <td>@player.gold_per_min</td>
+                <td>@player.item_0 @player.item_1 @player.item_2 @player.item_3 @player.item_4 @player.item_5</td>
+            </tr>
+            <tr class="empty-row"></tr>
+        }
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>@levelSum</td>
+                <td>@Ksum</td>
+                <td>@Dsum</td>
+                <td>@Asum</td>
+                <td>@GoldSum</td>
+                <td class="kunit">@LHsum</td>
+                <td>@DnSum</td>
+                <td>@XPMsum</td>
+                <td>@GPMsum</td>
+                <td></td>
+            </tr>
+        </tfoot>
+        }
+    </table>
+
+    <div class="spacer"></div>
+    @{
+        victoryOrDefeat = match.radiant_win ? "defeat" : "victory";
+        victoryOrDefeatCaps = match.radiant_win ? "Defeat" : "Victory";    
+        <h2><span>The Dire -</span><span class="@victoryOrDefeat"> @victoryOrDefeatCaps</span></h2>
+    }
+    <table>
+        <thead>
+            <th>Player</th>
+            <th class="empty-cell">Hero</th>
+            <th></th>
+            <th>Level</th>  
+            <th>K</th>  
+            <th>D</th>
+            <th>A</th>
+            <th>Gold</th>
+            <th>LH</th>
+            <th>DN</th>
+            <th>XPM</th>
+            <th>GPM</th>
+            <th>Items</th>
+        </thead>
+        @{    
+        levelSum = 0; Ksum = 0; Dsum = 0; Asum = 0; GoldSum = 0; LHsum = 0; DnSum = 0; XPMsum = 0; GPMsum = 0;
+        
+        foreach (var player in   affiliationGetter.GetDirePlayers(Model.players))
+        {
+            levelSum += player.level;
+            Ksum += player.kills;
+            Dsum += player.deaths;
+            Asum += player.assists;
+            GoldSum += player.gold;
+            LHsum += player.last_hits;
+            DnSum += player.denies;
+            XPMsum += player.xp_per_min;
+            GPMsum += player.gold_per_min;
+            
+            <tr class=@cssClassHelper.GetEvenRowClass(player.player_slot)>
+                <td><a class="detail-link" href="/Player/Overview/@player.account_id">@player.account_name</a></td>
+                <td><img src="@imageUrlGenerator.GetHeroImageUrl(player.hero_name)" /></td>
+                <td>@player.hero_name</td>
+                <td>@player.level</td>
+                <td>@player.kills</td>
+                <td>@player.deaths</td>
+                <td>@player.assists</td>
+                <td class="kunit">@player.gold</td>
+                <td>@player.last_hits</td>
+                <td>@player.denies</td>
+                <td>@player.xp_per_min</td>
+                <td>@player.gold_per_min</td>
+                <td>@player.item_0 @player.item_1 @player.item_2 @player.item_3 @player.item_4 @player.item_5</td>
+            </tr>
+            <tr class="empty-row"></tr>
+        }
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>@levelSum</td>
+                <td>@Ksum</td>
+                <td>@Dsum</td>
+                <td>@Asum</td>
+                <td>@GoldSum</td>
+                <td class="kunit">@LHsum</td>
+                <td>@DnSum</td>
+                <td>@XPMsum</td>
+                <td>@GPMsum</td>
+                <td></td>
+            </tr>
+        </tfoot>
+        }
+    </table>
+</section>

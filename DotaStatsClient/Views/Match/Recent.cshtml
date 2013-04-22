@@ -1,0 +1,44 @@
+﻿@using DotaSite.Helpers;
+@using DotaSite.Models;
+@model List<MatchDetail>
+
+@{
+    ViewBag.Title = "Recent Matches";
+    var imageUrlGenerator = new ImageUrlGenerator();
+    var affliationGetter = new AffiliationHelper();
+}
+
+<section class="center main-content">
+    <h2>Recent Matches</h2>      
+    <table class="match-table">
+        <thead>
+            <th>Match ID</th>
+            <th>Result</th>  
+            <th>Duration</th>  
+            <th>Radiant</th>  
+            <th>Dire</th>  
+        </thead>
+        @foreach (var match in Model)
+        {
+            var winningTeamText = match.radiant_win ? "Radiant Victory" : "Dire Victory";
+            
+            <tr>
+                <td><a class="detail-link" href="/Match/Details/@match.match_id">@match.match_id</a></td>
+                <td>@winningTeamText</td>
+                <td>@match.duration</td>
+                <td>
+                    @foreach (var player in affliationGetter.GetRadiantPlayers(match.players))
+                    {
+                        <img src="@imageUrlGenerator.GetHeroImageUrl(player.hero_name)" />
+                    }
+                </td>
+                <td>
+                    @foreach (var player in affliationGetter.GetDirePlayers(match.players))
+                    {
+                        <img src="@imageUrlGenerator.GetHeroImageUrl(player.hero_name)" />
+                    }
+                </td>
+            </tr>
+        }
+    </table> 
+</section>

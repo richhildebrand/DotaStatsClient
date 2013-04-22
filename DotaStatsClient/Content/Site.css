@@ -1,0 +1,227 @@
+﻿/* Full site */
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+}
+
+.kunit:after {
+    content: "k";
+}
+
+.percent:after {
+    content: "%";
+}
+
+.empty-cell {
+    width: 1%;
+}
+
+.empty-row {
+    width: 100%;
+    height: 1em;
+}
+
+.detail-link, .detail-link:visited, .detail-link:hover {
+    color: black;
+}
+
+/* Layout */
+html { 
+    background-color: rgb(21,17,16);
+    color: white;
+}
+
+body {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#Main {
+    min-height: 30em;
+}
+
+footer {
+    border-top: .1em solid white;
+}
+
+/* top nav */
+
+a, a:visited, a:hover {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+nav li a.selected, nav li a.selected:visited, nav li a.selected :hover {
+    color: rgb(226, 129, 100);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+a:active {
+    color: magenta;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+li { 
+    list-style: none; 
+    display: inline;
+}
+
+
+
+li::after {
+    content: "/";
+    font-weight: bold;
+    padding-left: .25em;
+    padding-right: .2em
+}
+
+/* hero */
+.sort-by li a {
+    color: rgb(76, 94, 135);
+    font-weight: normal;
+}
+
+.sort-by li a.selected , .sort-by li a.selected:visited, .sort-by li a.selected:hover {
+    color: rgb( 115, 59, 34);
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+/* home page */
+input {
+    min-width: 25em;
+    margin-top: 1.5em;
+    text-align: center;
+    padding: .3em;
+    color: rgb(79, 76, 76);
+}
+
+::-webkit-input-placeholder { 
+    color:rgb(79, 76, 76);
+    font-style: italic;
+    font-weight: bold;
+}
+:-ms-input-placeholder { 
+    color:rgb(79, 76, 76);
+    font-style: italic;
+    font-weight: bold;
+}
+input:-moz-placeholder { 
+    color:rgb(79, 76, 76);
+    font-style: italic;
+    font-weight: bold;
+}
+::-moz-placeholder { 
+    color:rgb(79, 76, 76);
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* Match Details */
+
+.main-content {
+    background-color: rgb(204, 204, 204);
+    color: black;
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-top: 1.5em;
+    border-radius: 20px;
+    border: 1px solid black;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+table {
+  border:0;
+  width: 100%;
+  border-collapse:separate; 
+  border-spacing: 0;
+}
+
+thead tr th{
+  border-bottom: 1.5px solid black;
+  border-collapse:separate; 
+} 
+
+tbody tr#first td { 
+  border-collapse:separate;
+}
+
+td {
+    text-align: center;
+}
+
+tfoot {
+    font-weight: bold;
+}
+
+tfoot tr td{
+  border-top: 1.5px solid black;
+  border-collapse:separate; 
+} 
+
+
+tfoot tr td{
+  
+  border-collapse:separate; 
+}
+
+td img {
+    height: 2.5em;
+    padding-top: .2em;
+}
+
+.even-row {
+    background-color: #DDD;
+}
+
+
+.victory {
+    color: blue;
+}
+
+.defeat {
+    color: red ;
+}
+
+h2 {
+    width: 100%;
+    border-top: 1.5px solid black;
+    border-bottom: 1.5px solid black;
+    color: rgb( 115, 59, 34);
+    font-weight: bold;
+    margin-top: .2em;
+    padding-top: .2em;
+    margin-bottom: .2em;
+    padding-bottom: .2em
+}
+
+h1 {
+    margin-bottom: .2em;
+}
+
+table.match-table img {
+    height: 1.4em;
+}
+
+/* Player */
+.player-summary {
+    padding-bottom: 2em;
+}
+
+.spacer {
+    margin: 3em;
+}

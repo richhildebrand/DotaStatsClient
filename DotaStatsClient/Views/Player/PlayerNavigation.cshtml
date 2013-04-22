@@ -1,0 +1,27 @@
+﻿@using DotaSite.Helpers;
+@using DotaSite.Models;
+@model List<MatchDetail>
+
+@{
+    var heroHelper = new HeroHelper();
+    var heros = heroHelper.GetHeroListForOnePlayer(Model, new List<PlayerHeroViewModel>());
+    int wins = heros.Sum(h => h.Wins);
+    int gamesPlayed = heros.Sum(h => h.GamesPlayed);
+    int losses = gamesPlayed - wins;
+    double winRate = Math.Round((double)wins / gamesPlayed * 100, 2);
+
+    var player = @Model[0].players[0];
+    var accountId = player.account_id.ToString();
+}
+
+<div class="player-summary">
+    <h1>@player.account_name</h1>
+    <span>Record @wins - @losses</span>
+    <span class="percent">Win Rate @winRate</span>
+</div>
+<ul class="sort-by">
+    Select:
+    <li>@Html.MenuLink("Overview", "Overview", "Player", accountId)</li>
+    <li>@Html.MenuLink("Matches", "Matches", "Player", accountId)</li>
+    <li>@Html.MenuLink("Heroes", "Heroes", "Player", accountId)</li>
+</ul>
