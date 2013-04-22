@@ -8,7 +8,7 @@ namespace DotaSite.Models
 
         public int match_id { get; set; }
 
-        public long account_id { get; set; }
+        public string account_id { get; set; }
 
         public string account_name { get; set; }
 
