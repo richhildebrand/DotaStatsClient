@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace DotaSite.Models
 {
     public class Player
@@ -30,5 +32,7 @@ namespace DotaSite.Models
 
         public int hero_id { get; set; }
         public Hero hero { get; set; }
+        public List<Item> items { get; set; }
+        public PlayerInformation playerInformation { get; set; }
     }
 }
