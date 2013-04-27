@@ -10,6 +10,7 @@
     var affiliationGetter = new AffiliationHelper();
     var cssClassHelper = new CssClassHelper();
     var itemHelper = new ItemHelper();
+    var playerInformationHelper = new PlayerInformationHelper();
 }
 <section id="MatchDetails" class="center main-content">
     <h1>Match @match.match_id</h1>
@@ -50,9 +51,12 @@
             GPMsum += player.gold_per_min;
             
             <tr class="@cssClassHelper.GetEvenRowClass(player.player_slot + 1)">
-                <td><a class="detail-link" href="/Player/Overview/@player.account_id">@player.playerInformation.personaname</a></td>
+                <td><a class="detail-link" href="/Player/Overview/@player.account_id">
+                    @playerInformationHelper.GetPlayerName(player)
+                    </a>
+                </td>
                 <td><img src="@player.hero.image_url" /></td>
-                <td>@player.hero_name</td>
+                <td>@player.hero.localized_name</td>
                 <td>@player.level</td>
                 <td>@player.kills</td>
                 <td>@player.deaths</td>
