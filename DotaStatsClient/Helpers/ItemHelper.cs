@@ -12,7 +12,7 @@ namespace DotaSite.Helpers
         {
             try
             {
-                return matchPlayer.items.FirstOrDefault(i => i.ItemSlot == itemSlot).Id.ToString();
+                return matchPlayer.matchPlayerItems.FirstOrDefault(mpi => mpi.ItemSlot == itemSlot).ItemId.ToString();
             }
             catch
             {

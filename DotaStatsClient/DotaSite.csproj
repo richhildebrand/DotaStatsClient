@@ -184,6 +184,7 @@
     </Compile>
     <Compile Include="Models\Hero.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\MatchPlayerItem.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\MatchDetail.cs" />
     <Compile Include="Models\PlayerHeroViewModel.cs" />

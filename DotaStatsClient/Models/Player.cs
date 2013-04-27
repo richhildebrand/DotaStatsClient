@@ -32,7 +32,7 @@ namespace DotaSite.Models
 
         public int hero_id { get; set; }
         public Hero hero { get; set; }
-        public List<Item> items { get; set; }
+        public List<MatchPlayerItem> matchPlayerItems { get; set; }
         public PlayerInformation playerInformation { get; set; }
     }
 }
