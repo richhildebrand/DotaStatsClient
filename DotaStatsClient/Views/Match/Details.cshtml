@@ -6,7 +6,6 @@
     ViewBag.Title = "Match Details";
     
     var match = Model;
-    var imageUrlGenerator = new ImageUrlGenerator();
     var affiliationGetter = new AffiliationHelper();
     var cssClassHelper = new CssClassHelper();
     var itemHelper = new ItemHelper();
@@ -37,6 +36,7 @@
         </thead>
         @{    
         int levelSum = 0, Ksum = 0, Dsum = 0, Asum = 0, GoldSum = 0, LHsum = 0, DnSum = 0, XPMsum = 0, GPMsum = 0;
+        string playerLink;
 
         foreach (var player in affiliationGetter.GetRadiantPlayers(Model.players))
         {
@@ -49,11 +49,22 @@
             DnSum += player.denies;
             XPMsum += player.xp_per_min;
             GPMsum += player.gold_per_min;
+
+            playerLink = playerInformationHelper.GetPlayerDetailsLink(player);
             
             <tr class="@cssClassHelper.GetEvenRowClass(player.player_slot + 1)">
-                <td><a class="detail-link" href="/Player/Overview/@player.account_id">
-                    @playerInformationHelper.GetPlayerName(player)
-                    </a>
+                <td>
+                    @if (string.IsNullOrWhiteSpace(playerLink))
+                    {
+                        <span>
+                            @playerInformationHelper.GetPlayerName(player)
+                        </span>
+                    }
+                    else {
+                        <a class="detail-link" href="/Player/Overview/@player.account_id">
+                            @playerInformationHelper.GetPlayerName(player)
+                        </a>
+                    }
                 </td>
                 <td><img src="@player.hero.image_url" /></td>
                 <td>@player.hero.localized_name</td>
@@ -133,11 +144,22 @@
             DnSum += player.denies;
             XPMsum += player.xp_per_min;
             GPMsum += player.gold_per_min;
+
+            playerLink = playerInformationHelper.GetPlayerDetailsLink(player);
             
             <tr class=@cssClassHelper.GetEvenRowClass(player.player_slot)>
-                <td><a class="detail-link" href="/Player/Overview/@player.account_id">
-                    @playerInformationHelper.GetPlayerName(player)
-                    </a>
+                <td>
+                    @if (string.IsNullOrWhiteSpace(playerLink))
+                    {
+                        <span>
+                            @playerInformationHelper.GetPlayerName(player)
+                        </span>
+                    }
+                    else {
+                        <a class="detail-link" href="/Player/Overview/@player.account_id">
+                            @playerInformationHelper.GetPlayerName(player)
+                        </a>
+                    }
                 </td>
                 <td><img src="@player.hero.image_url" /></td>
                 <td>@player.hero_name</td>

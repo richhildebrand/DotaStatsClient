@@ -19,5 +19,13 @@ namespace DotaSite.Helpers
                 return player.account_id;
             }
         }
+
+        public string GetPlayerDetailsLink(Player player)
+        {
+            if (player.playerInformation != null)
+                return player.account_id;
+            else
+                return "";
+        }
     }
 }

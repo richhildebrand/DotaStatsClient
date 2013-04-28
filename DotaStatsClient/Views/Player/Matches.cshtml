@@ -4,9 +4,9 @@
 
 @{
     ViewBag.Title = "Player Matches";
-    var imageUrlGenerator = new ImageUrlGenerator();
     var affiliationHelper = new AffiliationHelper();
     var cssClassHelper = new CssClassHelper();
+    var itemHelper = new ItemHelper();
 }
 
 <section class="featured center main-content">
@@ -41,7 +41,14 @@
                     <td><a class="detail-link" href="/Match/Details/@match.match_id">@match.match_id</a></td>
                     <td>@match.duration</td>
                     <td>@player.kills / @player.deaths / @player.assists</td>
-                    <td>@player.item_0 @player.item_1 @player.item_2 @player.item_3 @player.item_4  @player.item_5</td>
+                    <td>
+                        @itemHelper.TryGetItemId(0, player)
+                        @itemHelper.TryGetItemId(1, player)
+                        @itemHelper.TryGetItemId(2, player)
+                        @itemHelper.TryGetItemId(3, player)
+                        @itemHelper.TryGetItemId(4, player)
+                        @itemHelper.TryGetItemId(5, player)
+                    </td>
                 </tr>
             }
         }
