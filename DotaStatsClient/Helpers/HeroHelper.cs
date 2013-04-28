@@ -27,7 +27,7 @@ namespace DotaSite.Helpers
                     if (affiliationHelper.PlayerWins(player, match.radiant_win)) { hero.Wins += 1; }
                     
                 }
-                else { heroes.Add(new PlayerHeroViewModel(player.hero_name)); }
+                else { heroes.Add(new PlayerHeroViewModel(player.hero.localized_name)); }
             }
 
             return heroes;

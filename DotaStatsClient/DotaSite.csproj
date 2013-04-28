@@ -179,7 +179,7 @@
     <Compile Include="Helpers\ImageUrlGenerator.cs" />
     <Compile Include="Helpers\ItemHelper.cs" />
     <Compile Include="Helpers\PlayerInformationHelper.cs" />
-    <Compile Include="Models\DotaWebApi.cs">
+    <Compile Include="ApiAccessor\DotaWebApi.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Models\Hero.cs" />

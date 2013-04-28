@@ -135,7 +135,10 @@
             GPMsum += player.gold_per_min;
             
             <tr class=@cssClassHelper.GetEvenRowClass(player.player_slot)>
-                <td><a class="detail-link" href="/Player/Overview/@player.account_id">@player.account_name</a></td>
+                <td><a class="detail-link" href="/Player/Overview/@player.account_id">
+                    @playerInformationHelper.GetPlayerName(player)
+                    </a>
+                </td>
                 <td><img src="@player.hero.image_url" /></td>
                 <td>@player.hero_name</td>
                 <td>@player.level</td>
@@ -147,7 +150,14 @@
                 <td>@player.denies</td>
                 <td>@player.xp_per_min</td>
                 <td>@player.gold_per_min</td>
-                <td>@player.item_0 @player.item_1 @player.item_2 @player.item_3 @player.item_4 @player.item_5</td>
+                 <td>
+                    @itemHelper.TryGetItemId(0, player)
+                    @itemHelper.TryGetItemId(1, player)
+                    @itemHelper.TryGetItemId(2, player)
+                    @itemHelper.TryGetItemId(3, player)
+                    @itemHelper.TryGetItemId(4, player)
+                    @itemHelper.TryGetItemId(5, player)
+                </td>
             </tr>
             <tr class="empty-row"></tr>
         }
