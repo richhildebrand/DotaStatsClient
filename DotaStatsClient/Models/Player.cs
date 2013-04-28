@@ -8,8 +8,6 @@ namespace DotaSite.Models
         public int player_slot { get; set; }
         public int match_id { get; set; }
         public string account_id { get; set; }
-        public string account_name { get; set; }
-        public string hero_name { get; set; }
         public int item_0 { get; set; }
         public int item_1 { get; set; }
         public int item_2 { get; set; }
