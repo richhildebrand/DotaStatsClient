@@ -18,10 +18,6 @@ namespace DotaSite.Models
         public PlayerHeroViewModel(string name)
         {
             Name = name;
-            Wins = 1;
-            GamesPlayed = 1;
-            XpPerMinute = 0;
-            GoldPerMinute = 0;
         }
 
         public double GetWinPercent()
