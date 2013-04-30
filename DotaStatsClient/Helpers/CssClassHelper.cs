@@ -7,9 +7,18 @@ namespace DotaSite.Helpers
 {
     public class CssClassHelper
     {
-        public string GetEvenRowClass(int rowNumber)
+
+        private int _rowCount;
+
+        public CssClassHelper()
         {
-            return rowNumber % 2 != 0 ? "even-row" : "";
+            _rowCount = 0;
+        }
+
+        public string GetRowColorClass()
+        {
+            _rowCount++;
+            return _rowCount % 2 != 0 ? "even-row" : "";
         }
 
         public string GetDireVictoryOrDefeatClass(bool raidiantVictory)

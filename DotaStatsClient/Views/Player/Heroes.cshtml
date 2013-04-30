@@ -24,13 +24,9 @@
             <th>Win Rate</th>  
         </thead>
         @{
-            int heroCount = 1;
-        
             foreach (var hero in heroes.OrderByDescending(h => h.GamesPlayed))
             {
-                heroCount += 1;
-            
-                <tr class="@cssClassHelper.GetEvenRowClass(heroCount + 1)">
+                <tr class="@cssClassHelper.GetRowColorClass()">
                     <td><img src="@imageUrlGenerator.GetHeroImageUrl(hero.Name)" /></td>
                     <td>@hero.Name</td>
                     <td>@hero.GamesPlayed</td>

@@ -32,7 +32,7 @@
                 heroCount += 1;
                 
             
-              <tr class="@cssClassHelper.GetEvenRowClass(heroCount + 1)">
+              <tr class="@cssClassHelper.GetRowColorClass()">
                 <td><img src="@imageUrlGenerator.GetHeroImageUrl(hero.Name)" /></td>
                 <td>@hero.Name</td>
                 <td>@hero.GamesPlayed</td>
@@ -64,7 +64,7 @@
                 var player = match.players.FirstOrDefault();
                 var victoryOrDefeat = affiliationHelper.PlayerWins(player, match.radiant_win) ? "Won Match" : "Lost Match";
             
-                <tr class="@cssClassHelper.GetEvenRowClass(matchCount)">
+                <tr class="@cssClassHelper.GetRowColorClass()">
                     <td>
                         <img src="@player.hero.image_url" />
                     </td>

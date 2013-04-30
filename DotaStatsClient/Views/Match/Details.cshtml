@@ -2,7 +2,7 @@
 @using DotaSite.Models;
 @model MatchDetail
 
-@{
+@{<a href="~/Views/Match/Details.cshtml">~/Views/Match/Details.cshtml</a>
     ViewBag.Title = "Match Details";
     
     var match = Model;
@@ -52,7 +52,7 @@
 
             playerLink = playerInformationHelper.GetPlayerDetailsLink(player);
             
-            <tr class="@cssClassHelper.GetEvenRowClass(player.player_slot + 1)">
+            <tr class="@cssClassHelper.GetRowColorClass()">
                 <td>
                     @if (string.IsNullOrWhiteSpace(playerLink))
                     {
@@ -147,7 +147,7 @@
 
             playerLink = playerInformationHelper.GetPlayerDetailsLink(player);
             
-            <tr class=@cssClassHelper.GetEvenRowClass(player.player_slot)>
+            <tr class=@cssClassHelper.GetRowColorClass()>
                 <td>
                     @if (string.IsNullOrWhiteSpace(playerLink))
                     {

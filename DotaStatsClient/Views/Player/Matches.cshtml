@@ -28,11 +28,10 @@
         
             foreach (var match in Model)
             {
-                matchCount +=1;
                 var player = match.players.FirstOrDefault();
                 var victoryOrDefeat = affiliationHelper.PlayerWins(player, match.radiant_win) ? "Won Match" : "Lost Match";
             
-                <tr class="@cssClassHelper.GetEvenRowClass(matchCount)">
+                <tr class="@cssClassHelper.GetRowColorClass()">
                     <td>
                         <img src="@player.hero.image_url" />
                     </td>
