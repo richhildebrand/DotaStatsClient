@@ -2,7 +2,7 @@
 @using DotaSite.Models;
 @model MatchDetail
 
-@{<a href="~/Views/Match/Details.cshtml">~/Views/Match/Details.cshtml</a>
+@{
     ViewBag.Title = "Match Details";
     
     var match = Model;
@@ -86,8 +86,9 @@
                     @itemHelper.TryGetItemId(5, player)
                 </td>
             </tr>
-            <tr class="empty-row"></tr>
+            
         }
+        <tr class="empty-row"></tr>
         <tfoot>
             <tr>
                 <td></td>
@@ -181,8 +182,8 @@
                     @itemHelper.TryGetItemId(5, player)
                 </td>
             </tr>
-            <tr class="empty-row"></tr>
         }
+        <tr class="empty-row"></tr>
         <tfoot>
             <tr>
                 <td></td>
