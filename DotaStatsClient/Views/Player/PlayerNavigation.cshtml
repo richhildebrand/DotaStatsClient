@@ -3,6 +3,7 @@
 @model List<MatchDetail>
 
 @{
+    var playerInformationHelper = new PlayerInformationHelper();
     var heroHelper = new HeroHelper();
     var heros = heroHelper.GetHeroListForOnePlayer(Model, new List<PlayerHeroViewModel>());
     int wins = heros.Sum(h => h.Wins);
@@ -15,7 +16,7 @@
 }
 
 <div class="player-summary">
-    <h1>@player.account_name</h1>
+    <h1>@playerInformationHelper.GetPlayerName(player)</h1>
     <span>Record @wins - @losses</span>
     <span class="percent">Win Rate @winRate</span>
 </div>
