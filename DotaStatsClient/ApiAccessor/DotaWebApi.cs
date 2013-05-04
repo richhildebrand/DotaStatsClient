@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web;
 
 namespace DotaSite.Models
 {
     public class DotaWebApi : WebClient
     {
+        public string GetClans()
+        {
+            this.BaseAddress = "http://dotawebapi.apphb.com/api/clans/getclans";
+            var fullUrl = this.BaseAddress;
+
+            return Encoding.Default.GetString(this.DownloadData(fullUrl));
+        }
+
         public string GetPlayerOverview(string playerId)
         {
             this.BaseAddress = "http://dotawebapi.apphb.com/api/players/getmatchhistory?steamid32=";

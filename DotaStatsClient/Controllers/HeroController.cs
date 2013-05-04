@@ -13,8 +13,6 @@ namespace DotaSite.Controllers
     {
 		private readonly DotaWebApi api = new DotaWebApi();
 
-        //
-        // GET: /Hero/
         public PartialViewResult HeroNavigation()
         {
             return PartialView();

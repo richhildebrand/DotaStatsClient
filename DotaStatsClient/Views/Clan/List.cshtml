@@ -1,0 +1,31 @@
+﻿@using DotaSite.Helpers;
+@using DotaSite.Models;
+@model List<Clan>
+
+@{
+    var cssClassHelper = new CssClassHelper();
+    var clans = Model;
+}
+
+<section class="featured center main-content">
+    <h2>Clans</h2>     
+    <table>
+        <thead>
+            <th>Clan</th>
+            <th>Tag</th>
+            <th>Rating</th>
+            <th>Games Played</th>  
+        </thead>
+        @{
+            foreach (var clan in clans)
+            {
+                <tr class="@cssClassHelper.GetRowColorClass()">
+                    <td><a class="detail-link" href="/Clan/Details/@clan.team_id">@clan.name</a></td>
+                    <td>@clan.tag</td>
+                    <td>@clan.rating</td>
+                    <td>@clan.games_played_with_current_roster</td>
+                </tr>
+            }
+        }
+    </table>
+</section>
