@@ -1,14 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Web;
 
-namespace DotaSite.Models
+namespace DotaSite.ApiAccessor
 {
     public class DotaWebApi : WebClient
     {
+        public string GetClanDetails(string clanId)
+        {
+            this.BaseAddress = "http://dotawebapi.apphb.com/api/clans/getclandetails?clanId=";
+            var fullUrl = this.BaseAddress + clanId;
+
+            return Encoding.Default.GetString(this.DownloadData(fullUrl));
+        }
+
         public string GetClans()
         {
             this.BaseAddress = "http://dotawebapi.apphb.com/api/clans/getclans";

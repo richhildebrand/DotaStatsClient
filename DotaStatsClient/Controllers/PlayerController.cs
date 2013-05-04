@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DotaSite.ApiAccessor;
 using DotaSite.Models;
 using Newtonsoft.Json;
 
@@ -17,7 +18,7 @@ namespace DotaSite.Controllers
             return PartialView();
         }
 
-        public ActionResult Overview(string playerId = "117486394")
+        public ActionResult Overview(string playerId)
         {
             var playerJson = api.GetPlayerOverview(playerId);
             var playerMatches = JsonConvert.DeserializeObject<List<MatchDetail>>(playerJson);

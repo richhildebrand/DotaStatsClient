@@ -1,0 +1,42 @@
+﻿@using DotaSite.Helpers;
+@using DotaSite.Models;
+@model Clan
+
+@{
+    var cssClassHelper = new CssClassHelper();
+    var clan = Model;
+}
+
+<section class="featured center main-content">
+    <h2>@clan.name</h2>     
+    <span></span>
+    <table>
+        <thead>
+            <th>Clan Member</th>
+            <th class="empty-cell">Avatar</th>
+            <th>Steam Id</th>
+            <th>Account Id</th>
+            <th>Profile Url</th>
+        </thead>
+        @{
+            
+            foreach (var member in clan.players)
+            {
+                if (member != null)
+                {
+                    <tr class="@cssClassHelper.GetRowColorClass()">
+                        <td>
+                            <a class="detail-link" href="/Player/Overview/@member.account_id">@member.personaname</a>
+                        </td>
+                        <td><img src="@member.avatarfull"/></td>
+                        <td>@member.steamid</td>
+                        <td>@member.account_id</td>
+                        <td>
+                            <a class="detail-link" target="_blank" href="@member.profileurl">Link to Steam Profile</a>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    </table>
+</section>

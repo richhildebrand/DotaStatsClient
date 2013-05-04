@@ -289,7 +289,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Filters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -316,6 +315,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Clan\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Clan\Details.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

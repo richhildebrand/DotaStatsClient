@@ -25,6 +25,12 @@ namespace DotaSite
                 defaults: new {controller = "Match", matchId = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                name: "ClanDetails",
+                url: "Clan/{action}/{clanId}",
+                defaults: new { controller = "Clan", matchId = UrlParameter.Optional }
+            );
+
 			routes.MapRoute(
 				name: "Default",
 				url: "{controller}/{action}/{id}",

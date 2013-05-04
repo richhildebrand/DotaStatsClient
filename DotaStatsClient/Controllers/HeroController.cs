@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DotaSite.ApiAccessor;
 using DotaSite.Models;
 using Newtonsoft.Json;
 using DotaSite.ViewModels;

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace DotaSite.Models
 {
     public class Clan
@@ -13,6 +15,6 @@ namespace DotaSite.Models
         public string url { get; set; }
         public string games_played_with_current_roster { get; set; }
         public string admin_account_id { get; set; }
-        public string players { get; set; }
+        public List<PlayerInformation> players { get; set; }
     }
 }
