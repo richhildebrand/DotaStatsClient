@@ -20,20 +20,30 @@
         </thead>
         @{
             
-            foreach (var member in clan.players)
+            foreach (var member in clan.clanPlayers)
             {
-                if (member != null)
+                if (member.player != null)
                 {
                     <tr class="@cssClassHelper.GetRowColorClass()">
                         <td>
-                            <a class="detail-link" href="/Player/Overview/@member.account_id">@member.personaname</a>
+                            <a class="detail-link" href="/Player/Overview/@member.player.account_id">@member.player.personaname</a>
                         </td>
-                        <td><img src="@member.avatarfull"/></td>
-                        <td>@member.steamid</td>
-                        <td>@member.account_id</td>
+                        <td><img src="@member.player.avatarfull"/></td>
+                        <td>@member.player.steamid</td>
+                        <td>@member.player.account_id</td>
                         <td>
-                            <a class="detail-link" target="_blank" href="@member.profileurl">Link to Steam Profile</a>
+                            <a class="detail-link" target="_blank" href="@member.player.profileurl">Link to Steam Profile</a>
                         </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr class="@cssClassHelper.GetRowColorClass()">
+                        <td>@member.AccountId</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
                     </tr>
                 }
             }

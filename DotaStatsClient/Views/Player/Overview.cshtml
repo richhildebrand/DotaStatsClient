@@ -10,8 +10,18 @@
     var heroHelper = new HeroHelper();
 
     var heroes = heroHelper.GetHeroListForOnePlayer(Model, new List<PlayerHeroViewModel>());
-}
 
+    bool hasPrivateMatchHistory = (Model.FirstOrDefault() == null);
+
+    if (hasPrivateMatchHistory)
+       {
+           <section class="featured center main-content">
+               <h2>Player match history is private.</h2>
+           </section>
+        }
+    else
+    {
+  
 <section class="featured center main-content">
     @Html.Partial("PlayerNavigation", Model)
     
@@ -78,3 +88,5 @@
         }
     </table> 
 </section>
+}
+}

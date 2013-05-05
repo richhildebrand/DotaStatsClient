@@ -184,6 +184,7 @@
     <Compile Include="ApiAccessor\DotaWebApi.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Models\ClanPlayer.cs" />
     <Compile Include="Models\Hero.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\MatchPlayerItem.cs" />
