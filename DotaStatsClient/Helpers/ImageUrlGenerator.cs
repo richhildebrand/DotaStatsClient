@@ -8,7 +8,7 @@ namespace DotaSite.Helpers
     public class ImageUrlGenerator
     {
         public string GetHeroImageUrl(string heroName) {
-            string imageUrlStart = "http://dotawebapi.apphb.com/content/HeroPortraits/";
+            string imageUrlStart = "https://raw.github.com/richhildebrand/DotaWebApi/master/DotaStatsWebApi/DotaStatsWebApi/Content/HeroPortraits/";
             string imageUrlEnd = "_full.png";
 
             string imageUrlMiddle = heroName.Replace(' ', '_');
