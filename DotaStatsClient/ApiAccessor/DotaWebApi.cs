@@ -23,6 +23,14 @@ namespace DotaSite.ApiAccessor
             return Encoding.Default.GetString(this.DownloadData(fullUrl));
         }
 
+        public string GetPlayers()
+        {
+            this.BaseAddress = "http://dotawebapi.apphb.com/api/players/getplayers";
+            var fullUrl = this.BaseAddress;
+
+            return Encoding.Default.GetString(this.DownloadData(fullUrl));
+        }
+
         public string GetPlayerOverview(string playerId)
         {
             this.BaseAddress = "http://dotawebapi.apphb.com/api/players/getmatchhistory?steamid32=";

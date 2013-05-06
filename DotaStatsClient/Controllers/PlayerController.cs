@@ -41,5 +41,13 @@ namespace DotaSite.Controllers
 
             return View(playerMatches);
         }
+
+        public ActionResult List()
+        {
+            var playerJson = api.GetPlayers();
+            var players = JsonConvert.DeserializeObject<List<PlayerInformation>>(playerJson);
+
+            return View(players);
+        }
     }
 }
