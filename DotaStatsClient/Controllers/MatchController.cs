@@ -21,6 +21,14 @@ namespace DotaSite.Controllers
             return View(matchDetail);
         }
 
+        public ActionResult Abilities(string matchId)
+        {
+            var matchJson = api.GetMatchDetails(matchId);
+            var matchDetail = JsonConvert.DeserializeObject<MatchDetail>(matchJson);
+
+            return View(matchDetail);
+        }
+
         public ActionResult Recent()
         {
             var recentMatchesJson = api.GetRecentMatches();

@@ -3,13 +3,13 @@
 @model MatchDetail
 
 @{
-    ViewBag.Title = "Match Details";
+    ViewBag.Title = "Match Abilities";
     
     var match = Model;
     var affiliationGetter = new AffiliationHelper();
     var cssClassHelper = new CssClassHelper();
-    var itemHelper = new ItemHelper();
     var playerInformationHelper = new PlayerInformationHelper();
+    var abilityHelper = new AbilityHelper();
 }
 <section id="MatchDetails" class="center main-content">
     @Html.Partial("Matchnavigation", Model)
@@ -24,34 +24,21 @@
             <th>Player</th>
             <th class="empty-cell">Hero</th>
             <th></th>
-            <th>Level</th>  
-            <th>K</th>  
-            <th>D</th>
-            <th>A</th>
-            <th>Gold</th>
-            <th>LH</th>
-            <th>DN</th>
-            <th>XPM</th>
-            <th>GPM</th>
-            <th>Items</th>
+            <th>1</th>
+            <th>2</th>  
+            <th>3</th>  
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
         </thead>
         @{    
-        int levelSum = 0, Ksum = 0, Dsum = 0, Asum = 0, GoldSum = 0, LHsum = 0, DnSum = 0, XPMsum = 0, GPMsum = 0;
-        string playerLink;
 
         foreach (var player in affiliationGetter.GetRadiantPlayers(Model.players))
         {
-            levelSum += player.level;
-            Ksum += player.kills;
-            Dsum += player.deaths;
-            Asum += player.assists;
-            GoldSum += player.gold;
-            LHsum += player.last_hits;
-            DnSum += player.denies;
-            XPMsum += player.xp_per_min;
-            GPMsum += player.gold_per_min;
-
-            playerLink = playerInformationHelper.GetPlayerDetailsLink(player);
+            var playerLink = playerInformationHelper.GetPlayerDetailsLink(player);
             
             <tr class="@cssClassHelper.GetRowColorClass()">
                 <td>
@@ -69,44 +56,18 @@
                 </td>
                 <td><img src="@player.hero.image_url" /></td>
                 <td>@player.hero.localized_name</td>
-                <td>@player.level</td>
-                <td>@player.kills</td>
-                <td>@player.deaths</td>
-                <td>@player.assists</td>
-                <td class="kunit">@player.gold</td>
-                <td>@player.last_hits</td>
-                <td>@player.denies</td>
-                <td>@player.xp_per_min</td>
-                <td>@player.gold_per_min</td>
-                <td>
-                    @itemHelper.TryGetItemId(0, player)
-                    @itemHelper.TryGetItemId(1, player)
-                    @itemHelper.TryGetItemId(2, player)
-                    @itemHelper.TryGetItemId(3, player)
-                    @itemHelper.TryGetItemId(4, player)
-                    @itemHelper.TryGetItemId(5, player)
-                </td>
+                <td>@abilityHelper.TryGetAbility(1, player.ability_upgrades)</td>
+                <td>@abilityHelper.TryGetAbility(2, player.ability_upgrades)</td>
+                <td>@abilityHelper.TryGetAbility(3, player.ability_upgrades)</td>
+                <td>@abilityHelper.TryGetAbility(4, player.ability_upgrades)</td>
+                <td>@abilityHelper.TryGetAbility(5, player.ability_upgrades)</td>
+                <td>@abilityHelper.TryGetAbility(6, player.ability_upgrades)</td>
+                <td>@abilityHelper.TryGetAbility(7, player.ability_upgrades)</td>
+                <td>@abilityHelper.TryGetAbility(8, player.ability_upgrades)</td>
+                <td>@abilityHelper.TryGetAbility(9, player.ability_upgrades)</td>
             </tr>
-            
         }
         <tr class="empty-row"></tr>
-        <tfoot>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>@levelSum</td>
-                <td>@Ksum</td>
-                <td>@Dsum</td>
-                <td>@Asum</td>
-                <td>@GoldSum</td>
-                <td class="kunit">@LHsum</td>
-                <td>@DnSum</td>
-                <td>@XPMsum</td>
-                <td>@GPMsum</td>
-                <td></td>
-            </tr>
-        </tfoot>
         }
     </table>
 
@@ -121,33 +82,21 @@
             <th>Player</th>
             <th class="empty-cell">Hero</th>
             <th></th>
-            <th>Level</th>  
-            <th>K</th>  
-            <th>D</th>
-            <th>A</th>
-            <th>Gold</th>
-            <th>LH</th>
-            <th>DN</th>
-            <th>XPM</th>
-            <th>GPM</th>
-            <th>Items</th>
+            <th>1</th>
+            <th>2</th>  
+            <th>3</th>  
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
         </thead>
         @{    
-        levelSum = 0; Ksum = 0; Dsum = 0; Asum = 0; GoldSum = 0; LHsum = 0; DnSum = 0; XPMsum = 0; GPMsum = 0;
         
         foreach (var player in   affiliationGetter.GetDirePlayers(Model.players))
         {
-            levelSum += player.level;
-            Ksum += player.kills;
-            Dsum += player.deaths;
-            Asum += player.assists;
-            GoldSum += player.gold;
-            LHsum += player.last_hits;
-            DnSum += player.denies;
-            XPMsum += player.xp_per_min;
-            GPMsum += player.gold_per_min;
-
-            playerLink = playerInformationHelper.GetPlayerDetailsLink(player);
+            var playerLink = playerInformationHelper.GetPlayerDetailsLink(player);
             
             <tr class=@cssClassHelper.GetRowColorClass()>
                 <td>
@@ -165,43 +114,18 @@
                 </td>
                 <td><img src="@player.hero.image_url" /></td>
                 <td>@player.hero.localized_name</td>
-                <td>@player.level</td>
-                <td>@player.kills</td>
-                <td>@player.deaths</td>
-                <td>@player.assists</td>
-                <td class="kunit">@player.gold</td>
-                <td>@player.last_hits</td>
-                <td>@player.denies</td>
-                <td>@player.xp_per_min</td>
-                <td>@player.gold_per_min</td>
-                 <td>
-                    @itemHelper.TryGetItemId(0, player)
-                    @itemHelper.TryGetItemId(1, player)
-                    @itemHelper.TryGetItemId(2, player)
-                    @itemHelper.TryGetItemId(3, player)
-                    @itemHelper.TryGetItemId(4, player)
-                    @itemHelper.TryGetItemId(5, player)
-                </td>
+                <td>@abilityHelper.TryGetAbility(1, player.ability_upgrades)</td>
+                <td>@abilityHelper.TryGetAbility(2, player.ability_upgrades)</td>
+                <td>@abilityHelper.TryGetAbility(3, player.ability_upgrades)</td>
+                <td>@abilityHelper.TryGetAbility(4, player.ability_upgrades)</td>
+                <td>@abilityHelper.TryGetAbility(5, player.ability_upgrades)</td>
+                <td>@abilityHelper.TryGetAbility(6, player.ability_upgrades)</td>
+                <td>@abilityHelper.TryGetAbility(7, player.ability_upgrades)</td>
+                <td>@abilityHelper.TryGetAbility(8, player.ability_upgrades)</td>
+                <td>@abilityHelper.TryGetAbility(9, player.ability_upgrades)</td>
             </tr>
         }
         <tr class="empty-row"></tr>
-        <tfoot>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>@levelSum</td>
-                <td>@Ksum</td>
-                <td>@Dsum</td>
-                <td>@Asum</td>
-                <td>@GoldSum</td>
-                <td class="kunit">@LHsum</td>
-                <td>@DnSum</td>
-                <td>@XPMsum</td>
-                <td>@GPMsum</td>
-                <td></td>
-            </tr>
-        </tfoot>
         }
     </table>
 </section>

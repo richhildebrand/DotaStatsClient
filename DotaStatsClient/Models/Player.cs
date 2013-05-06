@@ -32,5 +32,6 @@ namespace DotaSite.Models
         public Hero hero { get; set; }
         public List<MatchPlayerItem> matchPlayerItems { get; set; }
         public PlayerInformation playerInformation { get; set; }
+        public List<MatchPlayerAbility> ability_upgrades { get; set; }
     }
 }
