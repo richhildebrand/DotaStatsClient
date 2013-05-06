@@ -1,0 +1,46 @@
+﻿@using DotaSite.ViewModels;
+
+@model SearchViewModel
+
+@{
+    ViewBag.Title = "Search Results";
+    var searchResults = Model;
+}
+
+<section class="featured center main-content">
+            <form action="Home/Search" method="post">
+                <input name="search" class="center" type="text" placeholder="Search: Matches, Players, Clans" />
+            </form>
+
+            <h2>Player Results</h2>
+            @{
+                if (searchResults.players != null)
+                {
+                    <table>
+                    @foreach (var player in searchResults.players)
+	                {
+                        <tr>
+                            <td>
+                                <a href="~/Player/Overview/@player.account_id">@player.account_id</a>
+                            </td>
+                        </tr>
+	                }
+                    </table>
+                }
+            }
+
+            <h2>Clan Results</h2>
+            @{
+                if (searchResults.clans != null)
+                {
+                    <table>
+                    @foreach (var clan in searchResults.clans)
+	                {
+                        <tr><td>
+		                    <a href="~/Clan/Details/@clan.team_id">@clan.name</a>
+                        </td></tr>
+	                }
+                    </table>
+                }
+            }
+</section>

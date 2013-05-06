@@ -67,5 +67,28 @@ namespace DotaSite.ApiAccessor
 
 			return System.Text.Encoding.Default.GetString(this.DownloadData(this.BaseAddress));
 		}
+
+        //search features
+        public string SearchMatches(string matchInfo)
+        {
+            this.BaseAddress = "http://dotawebapi.apphb.com/api/matches/searchMatches?matchInfo=";
+            var fullUrl = this.BaseAddress + matchInfo;
+            return Encoding.Default.GetString(this.DownloadData(fullUrl));
+        }
+
+        public string SearchClans(string clanInfo)
+        {
+            this.BaseAddress = "http://dotawebapi.apphb.com/api/clans/searchClans?clanInfo=";
+            var fullUrl = this.BaseAddress + clanInfo;
+            return Encoding.Default.GetString(this.DownloadData(fullUrl));
+        }
+
+        public string SearchPlayers(string playerInfo)
+        {
+            this.BaseAddress = "http://dotawebapi.apphb.com/api/players/searchPlayers?playerInfo=";
+            var fullUrl = this.BaseAddress + playerInfo;
+            return Encoding.Default.GetString(this.DownloadData(fullUrl));
+        }
+
     }
 }
