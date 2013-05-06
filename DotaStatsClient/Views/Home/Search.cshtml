@@ -1,46 +1,81 @@
-﻿@using DotaSite.ViewModels;
+﻿@using System;
+@using DotaSite.Helpers;
+@using DotaSite.ViewModels;
 
 @model SearchViewModel
 
 @{
     ViewBag.Title = "Search Results";
     var searchResults = Model;
+    var cssClassHelper = new CssClassHelper();
 }
 
 <section class="featured center main-content">
-            <form action="Home/Search" method="post">
+            <form method="post">
                 <input name="search" class="center" type="text" placeholder="Search: Matches, Players, Clans" />
             </form>
 
             <h2>Player Results</h2>
             @{
-                if (searchResults.players != null)
+                if (searchResults.players != null && searchResults.players.Count > 0)
                 {
-                    <table>
-                    @foreach (var player in searchResults.players)
-	                {
-                        <tr>
-                            <td>
-                                <a href="~/Player/Overview/@player.account_id">@player.account_id</a>
-                            </td>
-                        </tr>
-	                }
-                    </table>
+                <table>
+                    <thead>
+                        <th>Clan Member</th>
+                        <th class="empty-cell">Avatar</th>
+                        <th>Steam Id</th>
+                        <th>Account Id</th>
+                        <th>Profile Url</th>
+                    </thead>
+                    @{
+            
+                        foreach (var player in searchResults.players)
+                        {
+                            if (player != null)
+                            {
+                                <tr class="@cssClassHelper.GetRowColorClass()">
+                                    <td>
+                                        <a class="detail-link" href="/Player/Overview/@player.account_id">@player.personaname</a>
+                                    </td>
+                                    <td><img src="@player.avatarfull"/></td>
+                                    <td>@player.steamid</td>
+                                    <td>@player.account_id</td>
+                                    <td>
+                                        <a class="detail-link" target="_blank" href="@player.profileurl">Link to Steam Profile</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                </table>
                 }
+                else { <h1>No Matches for Players</h1><br /> }
             }
 
             <h2>Clan Results</h2>
             @{
-                if (searchResults.clans != null)
+                if (searchResults.clans != null && searchResults.clans.Count > 0)
                 {
                     <table>
-                    @foreach (var clan in searchResults.clans)
-	                {
-                        <tr><td>
-		                    <a href="~/Clan/Details/@clan.team_id">@clan.name</a>
-                        </td></tr>
-	                }
+                        <thead>
+                            <th>Clan</th>
+                            <th>Tag</th>
+                            <th>Rating</th>
+                            <th>Games Played</th>  
+                        </thead>
+                        @{
+                    foreach (var clan in searchResults.clans)
+                            {
+                                <tr class="@cssClassHelper.GetRowColorClass()">
+                                    <td><a class="detail-link" href="/Clan/Details/@clan.team_id">@clan.name</a></td>
+                                    <td>@clan.tag</td>
+                                    <td>@clan.rating</td>
+                                    <td>@clan.games_played_with_current_roster</td>
+                                </tr>
+                            }
+                        }
                     </table>
                 }
+                else { <h1>No Matches for Clans</h1> }
             }
 </section>

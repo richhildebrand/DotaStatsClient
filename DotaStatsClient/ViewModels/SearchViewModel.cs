@@ -9,6 +9,6 @@ namespace DotaSite.ViewModels
     public class SearchViewModel
     {
         public List<Clan> clans { get; set; }
-        public List<Player> players { get; set; }
+        public List<PlayerInformation> players { get; set; }
     }
 }

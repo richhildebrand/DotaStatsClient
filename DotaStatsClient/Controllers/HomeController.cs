@@ -26,7 +26,7 @@ namespace DotaSite.Controllers
             var clans = JsonConvert.DeserializeObject<List<Clan>>(clanJson);
 
             var playersJson = api.SearchPlayers(search);
-            var players = JsonConvert.DeserializeObject<List<Player>>(playersJson);
+            var players = JsonConvert.DeserializeObject<List<PlayerInformation>>(playersJson);
 
             var matchJson = api.SearchMatches(search);
             var match = JsonConvert.DeserializeObject<MatchDetail>(matchJson);
@@ -35,8 +35,8 @@ namespace DotaSite.Controllers
             searchViewModel.clans = clans;
             searchViewModel.players = players;
 
-            if (match != null) return RedirectToAction("Details", "Match", new {id = 1});
-            else return View(searchViewModel);
+            if (match != null) { return RedirectToAction("Details", "Match", new { matchId = match.match_id }); }
+            else { return View(searchViewModel); }
         }
 	}
 }
