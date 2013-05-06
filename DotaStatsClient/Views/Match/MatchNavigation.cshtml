@@ -1,0 +1,16 @@
+﻿@using DotaSite.Helpers;
+@using DotaSite.Models;
+
+@model MatchDetail
+
+@{
+    var match = Model;
+    var matchId = Model.match_id.ToString();
+    
+}
+
+<ul class="sort-by">
+    Select:
+    <li>@Html.MenuLink("Details", "Details", "Match", matchId)</li>
+    <li>@Html.MenuLink("Abilities", "Abilities", "Match", matchId)</li>
+</ul>
